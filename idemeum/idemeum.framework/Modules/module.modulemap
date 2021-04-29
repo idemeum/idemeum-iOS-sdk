@@ -1,0 +1,11 @@
+framework module idemeum {
+  umbrella header "idemeum.h"
+
+  export *
+  module * { export * }
+}
+
+module idemeum.Swift {
+    header "idemeum-Swift.h"
+    requires objc
+}
