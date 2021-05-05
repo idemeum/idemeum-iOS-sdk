@@ -7,13 +7,6 @@
 
 import Foundation
 
-public class IdemeumSigninResponse: NSObject {
-    
-    public var status:Bool = false
-    public var token:OIDCToken = OIDCToken()
-    public var message:String = ""
-}
-
 public class OIDCToken:NSObject {
     
     public var accessToken: String = ""
@@ -29,10 +22,11 @@ public class OIDCToken:NSObject {
 }
 
 enum ErrorMsg: String {
-    case OPERATION_CANCELLED = "Operation cancelled!!"
-    case TOKEN_ERROR = "Token not received from backend!!"
-    case UNKNOWN_ERROR = "Unknown error!!"
+    case OPERATION_CANCELLED = "Operation cancelled"
+    case TOKEN_ERROR = "Token not generated"
+    case UNKNOWN_ERROR = "Unknown error"
     case USERLOGOUT = "User is logout or token not available"
+    case NO_INTERNET = "Internet connection is not available"
     
     var errorCode: Int {
         switch self {
@@ -40,6 +34,7 @@ enum ErrorMsg: String {
         case .TOKEN_ERROR: return 12
         case .UNKNOWN_ERROR : return 13
         case .USERLOGOUT : return 14
+        case .NO_INTERNET: return 15
         }
     }
 }

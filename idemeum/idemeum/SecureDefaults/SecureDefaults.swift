@@ -33,7 +33,7 @@ import CommonCrypto
  - SeeAlso: https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
  */
 @objc(PVSecureDefaults)
-public class SecureDefaults: UserDefaults {
+class SecureDefaults: UserDefaults {
     
     private enum Keys {
         static let AESIV = "SecureDefaults.AESIV"

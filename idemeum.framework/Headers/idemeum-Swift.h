@@ -189,7 +189,6 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
 @import AuthenticationServices;
-@import Foundation;
 @import ObjectiveC;
 #endif
 
@@ -222,42 +221,9 @@ SWIFT_CLASS("_TtC7idemeum7Idemeum")
 @end
 
 
-SWIFT_CLASS("_TtC7idemeum21IdemeumSigninResponse")
-@interface IdemeumSigninResponse : NSObject
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
 SWIFT_CLASS("_TtC7idemeum9OIDCToken")
 @interface OIDCToken : NSObject
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-/// Overrides the <code>NSUserDefaults</code> class within addition to encrypt and decrypt data. It uses the
-/// Advanced Encryption Standard (AES) to encrypt and decrypt data.
-/// seealso:
-/// https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
-SWIFT_CLASS_NAMED("SecureDefaults")
-@interface PVSecureDefaults : NSUserDefaults
-- (nullable instancetype)initWithSuiteName:(NSString * _Nullable)suitename OBJC_DESIGNATED_INITIALIZER;
-- (id _Nullable)objectForKey:(NSString * _Nonnull)defaultName SWIFT_WARN_UNUSED_RESULT;
-- (void)setObject:(id _Nullable)value forKey:(NSString * _Nonnull)defaultName;
-- (void)setInteger:(NSInteger)value forKey:(NSString * _Nonnull)defaultName;
-- (void)setFloat:(float)value forKey:(NSString * _Nonnull)defaultName;
-- (void)setDouble:(double)value forKey:(NSString * _Nonnull)defaultName;
-- (void)setBool:(BOOL)value forKey:(NSString * _Nonnull)defaultName;
-- (void)setURL:(NSURL * _Nullable)url forKey:(NSString * _Nonnull)defaultName;
-- (NSString * _Nullable)stringForKey:(NSString * _Nonnull)defaultName SWIFT_WARN_UNUSED_RESULT;
-- (NSArray * _Nullable)arrayForKey:(NSString * _Nonnull)defaultName SWIFT_WARN_UNUSED_RESULT;
-- (NSDictionary<NSString *, id> * _Nullable)dictionaryForKey:(NSString * _Nonnull)defaultName SWIFT_WARN_UNUSED_RESULT;
-- (NSData * _Nullable)dataForKey:(NSString * _Nonnull)defaultName SWIFT_WARN_UNUSED_RESULT;
-- (NSArray<NSString *> * _Nullable)stringArrayForKey:(NSString * _Nonnull)defaultName SWIFT_WARN_UNUSED_RESULT;
-- (NSInteger)integerForKey:(NSString * _Nonnull)defaultName SWIFT_WARN_UNUSED_RESULT;
-- (float)floatForKey:(NSString * _Nonnull)defaultName SWIFT_WARN_UNUSED_RESULT;
-- (double)doubleForKey:(NSString * _Nonnull)defaultName SWIFT_WARN_UNUSED_RESULT;
-- (BOOL)boolForKey:(NSString * _Nonnull)defaultName SWIFT_WARN_UNUSED_RESULT;
-- (NSURL * _Nullable)URLForKey:(NSString * _Nonnull)defaultName SWIFT_WARN_UNUSED_RESULT;
 @end
 
 #if __has_attribute(external_source_symbol)

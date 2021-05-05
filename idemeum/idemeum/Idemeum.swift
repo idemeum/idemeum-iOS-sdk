@@ -28,7 +28,13 @@ public class Idemeum: NSObject {
     let webserviceURL:String = "https://ciam.idemeum.com/api/consumer"
     
     //MARK:- Login method.
-    public func login(completionHandler: @escaping (_ isSuccess:Bool, _ mIdemeumResponse: IdemeumSigninResponse?, _ error:Error?) -> Void) {
+    public func login(completionHandler: @escaping (_ isSuccess:Bool, _ mIdemeumResponse: OIDCToken?, _ error:Error?) -> Void) {
+        
+        if !Reachability.isConnectedToNetwork() {
+            //No internet
+            completionHandler(false,nil,Error(errorMsg: ErrorMsg.NO_INTERNET))
+            return
+        }
         
         guard let authURL = URL(string: "\(webserviceURL)/authorize?clientId=\(clientID)") else {
             completionHandler(false,nil,Error(errorMsg: ErrorMsg.UNKNOWN_ERROR))
@@ -72,11 +78,7 @@ public class Idemeum: NSObject {
                             
                             self.saveOIDCToUserdefaults(objOIDC.dictionary)
                             
-                            let objIR = IdemeumSigninResponse()
-                            objIR.status = true
-                            objIR.token = objOIDC
-                            
-                            completionHandler(true,objIR,nil)
+                            completionHandler(true,objOIDC,nil)
                             return
                         }
                         completionHandler(false,nil,Error(errorMsg: ErrorMsg.TOKEN_ERROR))
@@ -110,6 +112,12 @@ public class Idemeum: NSObject {
     //MARK:- Token Validation
     public func userClaims(completionHandler: @escaping (_ isSuccess:Bool, _ mClaims: Any?, _ error:Error?) -> Void) {
         
+        if !Reachability.isConnectedToNetwork() {
+            //No internet
+            completionHandler(false,nil,Error(errorMsg: ErrorMsg.NO_INTERNET))
+            return
+        }
+        
         guard let oidcValue = self.getOIDCValueFromUserdefaults() else {
             completionHandler(false,nil, Error(errorMsg: ErrorMsg.USERLOGOUT))
             return
@@ -127,7 +135,7 @@ public class Idemeum: NSObject {
     
     //MARK:- IS Logged In user
     public func isLoggedIn(completionHandler: @escaping (_ isSuccess:Bool) -> Void) {
-        
+       
         guard let oidcValue = self.getOIDCValueFromUserdefaults() else {
             completionHandler(false)
             return

@@ -10,7 +10,7 @@ import UIKit
 @_exported import idemeum
 @objc public class Idemeum : ObjectiveC.NSObject {
   public init(parentView: UIKit.UIViewController, clientId: Swift.String)
-  public func login(completionHandler: @escaping (Swift.Bool, idemeum.IdemeumSigninResponse?, idemeum.Error?) -> Swift.Void)
+  public func login(completionHandler: @escaping (Swift.Bool, idemeum.OIDCToken?, idemeum.Error?) -> Swift.Void)
   public func userClaims(completionHandler: @escaping (Swift.Bool, Any?, idemeum.Error?) -> Swift.Void)
   public func isLoggedIn(completionHandler: @escaping (Swift.Bool) -> Swift.Void)
   public func logout()
@@ -19,13 +19,6 @@ import UIKit
 }
 extension Idemeum : AuthenticationServices.ASWebAuthenticationPresentationContextProviding {
   @objc dynamic public func presentationAnchor(for session: AuthenticationServices.ASWebAuthenticationSession) -> AuthenticationServices.ASPresentationAnchor
-}
-@objc @_inheritsConvenienceInitializers public class IdemeumSigninResponse : ObjectiveC.NSObject {
-  public var status: Swift.Bool
-  public var token: idemeum.OIDCToken
-  public var message: Swift.String
-  @objc override dynamic public init()
-  @objc deinit
 }
 @objc @_inheritsConvenienceInitializers public class OIDCToken : ObjectiveC.NSObject {
   public var accessToken: Swift.String
@@ -37,45 +30,4 @@ extension Idemeum : AuthenticationServices.ASWebAuthenticationPresentationContex
 public struct Error {
   public var errorMessage: Swift.String
   public var statuscode: Swift.Int
-}
-@_inheritsConvenienceInitializers @objc(PVSecureDefaults) public class SecureDefaults : Foundation.UserDefaults {
-  public static let shared: idemeum.SecureDefaults
-  public var keychainAccessible: Swift.String
-  public var keychainAccessGroup: Swift.String?
-  public var password: Swift.String? {
-    get
-    set
-  }
-  public var key: Foundation.Data! {
-    get
-    set
-  }
-  public var isKeyCreated: Swift.Bool {
-    get
-  }
-  public var IV: Foundation.Data! {
-    get
-    set
-  }
-  @objc override dynamic public init?(suiteName suitename: Swift.String?)
-  public func rawObject(forKey defaultName: Swift.String) -> Any?
-  public func setRawObject(_ value: Any?, forKey defaultName: Swift.String)
-  @objc override dynamic public func object(forKey defaultName: Swift.String) -> Any?
-  @objc override dynamic public func set(_ value: Any?, forKey defaultName: Swift.String)
-  @objc override dynamic public func set(_ value: Swift.Int, forKey defaultName: Swift.String)
-  @objc override dynamic public func set(_ value: Swift.Float, forKey defaultName: Swift.String)
-  @objc override dynamic public func set(_ value: Swift.Double, forKey defaultName: Swift.String)
-  @objc override dynamic public func set(_ value: Swift.Bool, forKey defaultName: Swift.String)
-  @objc override dynamic public func set(_ url: Foundation.URL?, forKey defaultName: Swift.String)
-  @objc override dynamic public func string(forKey defaultName: Swift.String) -> Swift.String?
-  @objc override dynamic public func array(forKey defaultName: Swift.String) -> [Any]?
-  @objc override dynamic public func dictionary(forKey defaultName: Swift.String) -> [Swift.String : Any]?
-  @objc override dynamic public func data(forKey defaultName: Swift.String) -> Foundation.Data?
-  @objc override dynamic public func stringArray(forKey defaultName: Swift.String) -> [Swift.String]?
-  @objc override dynamic public func integer(forKey defaultName: Swift.String) -> Swift.Int
-  @objc override dynamic public func float(forKey defaultName: Swift.String) -> Swift.Float
-  @objc override dynamic public func double(forKey defaultName: Swift.String) -> Swift.Double
-  @objc override dynamic public func bool(forKey defaultName: Swift.String) -> Swift.Bool
-  @objc override dynamic public func url(forKey defaultName: Swift.String) -> Foundation.URL?
-  @objc deinit
 }
