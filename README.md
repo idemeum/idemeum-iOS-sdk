@@ -66,7 +66,7 @@ func login(){
 func renderUserClaims(){
   objIdemeum.userClaims(){(isSuccess, result, error) in
     if isSuccess, let stringResult = result {
-      //Get here OIDC token.
+      //fetch user approved claims from JSON response
     }else {
       //Show error
     }
