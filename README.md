@@ -24,7 +24,7 @@ import idemeum
 ## Initialize idemeum SDK
 
 Initialize idemeum SDK instance. 
-Use your clientId that you obtained from [idemeum developer portal]().
+Use your clientId that you obtained from [idemeum developer portal](https://developer.idemeum.com/devportal/index.html).
 
 ``` 
 var objIdemeum: Idemeum!
